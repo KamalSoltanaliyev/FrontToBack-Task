@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FrontToBack.Contexts;
+using FrontToBack.ViewModels;
+using Microsoft.EntityFrameworkCore;
+
 namespace FrontToBack.Controllers
 {
     public class HomeController : Controller
@@ -9,10 +12,18 @@ namespace FrontToBack.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var Sliders = _context.Sliders.ToList();
-            return View(Sliders);
+            var Sliders = await _context.Sliders.ToListAsync();
+            var shippings = await _context.Shippings.ToListAsync();
+
+            HomeViewModel homeViewModel = new HomeViewModel
+            {
+                Sliders = Sliders,
+                Shippings = shippings
+            };
+
+            return View(homeViewModel);
         }
     }
 }

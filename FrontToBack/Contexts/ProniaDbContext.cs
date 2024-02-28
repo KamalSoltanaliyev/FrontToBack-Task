@@ -9,6 +9,7 @@ namespace FrontToBack.Contexts
         {
         }
 
-        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Slider>? Sliders { get; set; }
+        public DbSet<Shipping>? Shippings { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿@using FrontToBack.Models;
-
+@using FrontToBack.ViewModels;
 @{
     ViewData["Title"] = "Index";
 }
-@model List<Slider>
+@model HomeViewModel
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -12,7 +12,7 @@
     <!-- Main Slider -->
     <div class="swiper-container main-slider swiper-arrow with-bg_white">
         <div class="swiper-wrapper">
-            @foreach (var slide in Model)
+            @foreach (var slide in Model.Sliders)
             {
                 <div class="swiper-slide animation-style-01">
                     <div class="slide-inner style-1 bg-height"
@@ -63,42 +63,21 @@
     <div class="container">
         <div class="shipping-bg">
             <div class="row shipping-wrap">
-                <div class="col-lg-4 col-md-6">
-                    <div class="shipping-item">
-                        <div class="shipping-img">
-                            <img src="~/assets/images/website-images//car.png"
-                                 alt="Shipping Icon" />
-                        </div>
-                        <div class="shipping-content">
-                            <h2 class="title">Free Shipping</h2>
-                            <p class="short-desc mb-0">Capped at $319 per order</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-                    <div class="shipping-item">
-                        <div class="shipping-img">
-                            <img src="~/assets/images/website-images//card.png"
-                                 alt="Shipping Icon" />
-                        </div>
-                        <div class="shipping-content">
-                            <h2 class="title">Safe Payment</h2>
-                            <p class="short-desc mb-0">With our payment gateway</p>
+                @foreach (var shipping in Model.Shippings)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="shipping-item">
+                            <div class="shipping-img">
+                                <img src="~/assets/images/website-images//@shipping.Image"
+                                     alt="Shipping Icon" />
+                            </div>
+                            <div class="shipping-content">
+                                <h2 class="title">@shipping.Tittle</h2>
+                                <p class="short-desc mb-0">@shipping.Description</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-                    <div class="shipping-item">
-                        <div class="shipping-img">
-                            <img src="~/assets/images/website-images//service.png"
-                                 alt="Shipping Icon" />
-                        </div>
-                        <div class="shipping-content">
-                            <h2 class="title">Best Services</h2>
-                            <p class="short-desc mb-0">Friendly & Supper Services</p>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
